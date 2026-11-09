@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>明细数据 · 到账字段权限 · 需求说明</title>
+  <style>
+    :root { --bg: #f3f5f7; --ink: #1f1f1f; --sub: #595959; --line: #e6e8eb; --teal: #13c2c2; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 64px; }
+    h1 { margin: 0; font-size: 26px; }
+    h2 { margin: 0 0 12px; font-size: 16px; }
+    .lead { margin: 8px 0 0; color: var(--sub); }
+    .card { background: #fff; border-radius: 12px; padding: 18px; margin-top: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td:first-child { white-space: nowrap; width: 108px; }
+    th { background: #fafafa; color: var(--sub); font-weight: 550; }
+    .mark { display: inline-block; border-radius: 4px; font-size: 12px; padding: 0 6px; line-height: 20px; background: #fff1f0; color: #cf1322; }
+    figure { margin: 14px 0 0; }
+    img { width: 100%; border: 1px solid var(--line); border-radius: 8px; }
+    figcaption { margin-top: 8px; color: var(--sub); font-size: 12px; }
+    .perm { margin-top: 14px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .perm-head { display: flex; gap: 28px; padding: 10px 16px; border-bottom: 1px solid var(--line); color: var(--sub); font-size: 13px; }
+    .perm-head b { color: var(--teal); font-weight: 550; border-bottom: 2px solid var(--teal); padding-bottom: 8px; }
+    .row { display: flex; gap: 16px; align-items: flex-start; padding: 14px 16px; font-size: 13px; }
+    .node { color: var(--teal); white-space: nowrap; }
+    .checks { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+    .check { display: inline-flex; align-items: center; gap: 6px; }
+    .box { width: 14px; height: 14px; border-radius: 2px; background: var(--teal); position: relative; flex: none; }
+    .box:after { content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+    .check.new { color: #cf1322; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>明细数据 · 到账字段权限</h1>
+    <p class="lead">商户平台「数据中心 → 明细数据」里的到账状态、预计到账时间，改到数字中台权限配置里控制。每个字段单独一颗按钮。</p>
+
+    <section class="card">
+      <h2>这次改什么</h2>
+      <table>
+        <thead><tr><th></th><th>现在</th><th>改为</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>配置位置</td>
+            <td>这两列跟着明细数据出现，权限配置里没有单独按钮</td>
+            <td>数字中台「权限配置 → 会员商户管理后台 → 数据中心 → 明细数据」</td>
+          </tr>
+          <tr>
+            <td>到账状态</td>
+            <td>无单独权限</td>
+            <td><span class="mark">新增</span> 一颗按钮。勾选后该角色能看到这一列，不勾选则不显示</td>
+          </tr>
+          <tr>
+            <td>预计到账时间</td>
+            <td>无单独权限</td>
+            <td><span class="mark">新增</span> 另一颗按钮。勾选后该角色能看到这一列，不勾选则不显示</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="perm">
+        <div class="perm-head"><span>数字中台</span><b>会员商户管理后台</b><span>灵犀养车管理后台</span><span>电子猴</span></div>
+        <div class="row">
+          <span class="node">数据中心</span>
+          <span class="node">明细数据</span>
+          <div class="checks">
+            <span class="check"><i class="box"></i>权益-使用状态</span>
+            <span class="check"><i class="box"></i>通用金-使用状态</span>
+            <span class="check"><i class="box"></i>通用金-发放金额</span>
+            <span class="check"><i class="box"></i>到账金额</span>
+            <span class="check"><i class="box"></i>权益撤回</span>
+            <span class="check"><i class="box"></i>通用金撤回</span>
+            <span class="check new"><i class="box"></i>到账状态</span>
+            <span class="check new"><i class="box"></i>预计到账时间</span>
+          </div>
+        </div>
+      </div>
+      <p class="lead">两颗新按钮排在这一行现有按钮后面，彼此分开。预计到账时间怎么计算、怎么展示，沿用现在的明细数据。现有角色这两项默认勾上还是不勾，不勾选后导出和「设置可见字段」是否一起去掉，以及「提报人明细数据」要不要同样两颗按钮，这次没说，待确认。</p>
+    </section>
+
+    <section class="card">
+      <h2>当前页面</h2>
+      <figure>
+        <img src="assets/detail-field-permission/01-list.png" alt="商户平台明细数据" />
+        <figcaption>商户平台「数据中心 / 明细数据」。到账状态、预计到账时间是表上的两列。</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/detail-field-permission/02-permission.png" alt="中台权限配置" />
+        <figcaption>数字中台「权限配置」，会员商户管理后台。两颗新按钮加在数据中心的「明细数据」这一行。</figcaption>
+      </figure>
+    </section>
+  </div>
+</body>
+</html>
